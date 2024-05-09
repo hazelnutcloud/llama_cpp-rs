@@ -40,6 +40,9 @@ pub struct LlamaParams {
 
     /// Force system to keep model in RAM
     pub use_mlock: bool,
+
+    /// Validate model tensor data
+    pub check_tensors: bool,
 }
 
 /// A policy to split the model across multiple GPUs
@@ -95,6 +98,7 @@ impl Default for LlamaParams {
             vocab_only: c_params.vocab_only,
             use_mmap: c_params.use_mmap,
             use_mlock: c_params.use_mlock,
+            check_tensors: c_params.check_tensors,
         }
     }
 }
@@ -112,6 +116,7 @@ impl From<LlamaParams> for llama_model_params {
             vocab_only: value.vocab_only,
             use_mmap: value.use_mmap,
             use_mlock: value.use_mlock,
+            check_tensors: value.check_tensors,
         }
     }
 }
